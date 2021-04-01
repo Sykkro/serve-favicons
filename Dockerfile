@@ -4,7 +4,7 @@
 # ---- Base Node ----
 FROM --platform=$BUILDPLATFORM alpine:3.12 AS base
 # install node
-RUN apk add --no-cache nodejs-current tini
+RUN apk add --no-cache nodejs npm tini
 # set working directory
 WORKDIR /etc/icons
 # Set tini as entrypoint
