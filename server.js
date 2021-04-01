@@ -15,6 +15,29 @@ global.config = require('./lib/config-loader')(defaultConfig, iconsConfigDir);
 const icons = require('./lib/icons-provider')(global.config.icons.basedir);
 const parseRequest = require('./lib/request-adapter')(global.config.domain);
 
+const sendOk = async (res, iconFilePath) => {
+  console.debug('returning icon', iconFilePath);
+  const stat = fs.statSync(iconFilePath);
+  res.writeHead(200, {
+    'Content-Type': 'image/x-icon',
+    'Content-Length': stat.size,
+  });
+
+  const readStream = fs.createReadStream(iconFilePath);
+  readStream.pipe(res);
+};
+
+const sendMissing = async (res) => {
+  console.debug('icon not found');
+  res.writeHead(404);
+  res.end('File not Found');
+};
+
+const sendError = async (res, exception) => {
+  console.error('failed to process request', exception);
+  res.writeHead(500);
+  res.end();
+};
 
 const requestListener = async (req, res) => {
   try {
@@ -26,26 +49,14 @@ const requestListener = async (req, res) => {
     const iconFilePath = icons.lookupIcon(parsed.icon, parsed.namespace);
 
     if (iconFilePath) {
-      console.debug('returning icon', iconFilePath);
-      const stat = fs.statSync(iconFilePath);
-      res.writeHead(200, {
-        'Content-Type': 'image/x-icon',
-        'Content-Length': stat.size,
-      });
-
-      const readStream = fs.createReadStream(iconFilePath);
-      readStream.pipe(res);
+      sendOk(res, iconFilePath);
     } else {
-      console.debug('icon not found');
-      res.writeHead(404);
-      res.end('File not Found');
+      sendMissing(res);
     }
 
     console.debug('memory usage', process.memoryUsage());
   } catch (exception) {
-    console.error('failed to process request', exception);
-    res.writeHead(500);
-    res.end();
+    sendError(res, exception);
   }
 };
 
