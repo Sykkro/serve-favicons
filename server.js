@@ -46,12 +46,16 @@ const requestListener = async (req, res) => {
     const parsed = parseRequest(req);
     console.debug('parsed request', parsed);
 
-    const iconFilePath = icons.lookupIcon(parsed.icon, parsed.namespace);
-
-    if (iconFilePath) {
-      sendOk(res, iconFilePath);
-    } else {
+    if (!parsed) {
       sendMissing(res);
+    } else {
+      const iconFilePath = icons.lookupIcon(parsed.icon, parsed.namespace);
+
+      if (iconFilePath) {
+        sendOk(res, iconFilePath);
+      } else {
+        sendMissing(res);
+      }
     }
 
     console.debug('memory usage', process.memoryUsage());
