@@ -23,7 +23,7 @@ jobs:
       id: prepare
       run: |
         if [[ $GITHUB_REF == refs/tags/* ]]; then
-          echo ::set-env name=DOCKER_TAG::${GITHUB_REF#refs/tags/}
+          echo "DOCKER_TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
         fi
     # https://github.com/docker/setup-qemu-action
     - name: Set up QEMU
