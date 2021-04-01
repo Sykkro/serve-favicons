@@ -9,7 +9,7 @@ on:
 
 env:
   DOCKER_REPO: sykkro/serve-favicons
-  DOCKER_PLATFORMS: "linux/amd64,linux/arm/v5,linux/arm/v6,linux/arm/v7,linux/arm64"
+  DOCKER_PLATFORMS: "linux/amd64,linux/arm/v7,linux/arm64"
   DOCKER_TAG: latest
 
 jobs:
