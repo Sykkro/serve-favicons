@@ -39,26 +39,39 @@ const sendError = async (res, exception) => {
   res.end();
 };
 
+const serveIcon = async (req, res) => {
+  const parsed = parseRequest(req);
+  console.debug('parsed request', parsed);
+
+  if (!parsed) {
+    sendMissing(res);
+  } else {
+    const iconFilePath = icons.lookupIcon(parsed.icon, parsed.namespace);
+
+    if (iconFilePath) {
+      sendOk(res, iconFilePath);
+    } else {
+      sendMissing(res);
+    }
+  }
+};
+
+const servePing = async (req, res) => {
+  const usage = process.memoryUsage();
+  console.debug('memory usage', usage);
+  res.writeHead(200);
+  res.end(`OK ${usage.rss}`);
+};
+
 const requestListener = async (req, res) => {
   try {
-    console.debug(JSON.stringify(req.headers));
-
-    const parsed = parseRequest(req);
-    console.debug('parsed request', parsed);
-
-    if (!parsed) {
-      sendMissing(res);
+    if (/^\/?(favicon.ico)?$/i.test(req.url)) {
+      serveIcon(req, res);
+    } else if (/^\/ping\/?/i.test(req.url)) {
+      servePing(req, res);
     } else {
-      const iconFilePath = icons.lookupIcon(parsed.icon, parsed.namespace);
-
-      if (iconFilePath) {
-        sendOk(res, iconFilePath);
-      } else {
-        sendMissing(res);
-      }
+      sendMissing(res);
     }
-
-    console.debug('memory usage', process.memoryUsage());
   } catch (exception) {
     sendError(res, exception);
   }
