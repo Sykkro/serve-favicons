@@ -1,7 +1,7 @@
 # ---- Base Node ----
-FROM node:15-alpine3.13 AS base
-# install tini
-RUN apk add --no-cache tini
+FROM alpine:3.13 AS base
+# install node
+RUN apk add --no-cache nodejs npm tini
 # set working directory
 WORKDIR /etc/icons
 # Set tini as entrypoint
@@ -14,7 +14,6 @@ COPY package.json .
 FROM base AS dependencies
 #
 # install node packages
-RUN npm set progress=false && npm config set depth 0
 RUN npm install --only=production 
 # copy production node_modules aside
 RUN cp -R node_modules prod_node_modules
