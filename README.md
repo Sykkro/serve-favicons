@@ -31,7 +31,7 @@ This project was created with the main purpose of covering some Favicon issues o
 
 ### How does it work?
 
-Upon load, `serve-favicons` scans the `icons/` folder for directories containing icon (`.ico`) files. These directories will be used internally as _"namespaces"_ and can have arbitrary names as long as they are valid DNS subdomain names, as specified in [RFC1123](https://tools.ietf.org/html/rfc1123) — as a rule of thumb, stick to concise lowercase alphanumeric characters.
+Upon load, `serve-favicons` scans the [`icons/`](/icons) folder for directories containing icon (`.ico`) files. These directories will be used internally as _"namespaces"_ and can have arbitrary names as long as they are valid DNS subdomain names, as specified in [RFC1123](https://tools.ietf.org/html/rfc1123) — as a rule of thumb, stick to concise lowercase alphanumeric characters.
 
 Loaded icons will be served by a simple HTTP server on port `8080` by default, which can be retrieved by querying either:
 - `http://<icon>.<domain>:<port>`
