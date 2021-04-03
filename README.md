@@ -82,10 +82,10 @@ Now, simply repeat the above step for the remaining entries you wish to tweak, b
 On boot, the following default configuration will be used:
 ```json
 { 
-  'domain': 'icons.local',
-  'port': 8080,
-  'icons': {
-    'basedir': 'icons',
+  "domain": "icons.local",
+  "port": 8080,
+  "icons": {
+    "basedir": "icons",
   },
 }
 ```
@@ -93,7 +93,7 @@ On boot, the following default configuration will be used:
 Field | Description | Default value 
 ------|-------------|---------------
 `domain` | domain to be used to match subdomain-based queries (e.g. "`icons.my-super-domain.com`", from [Integrating with Bitwarden](#Integrating-with-Bitwarden) above) | `icons.local` 
-`port` | server listening port | 8080
+`port` | server listening port | `8080`
 `icons.basedir` | location of the root icons directory (will default to the provided icons bundle, next to `server.js`) | `icons`
 
 These defaults can be overridden by an external `config.json` file, whose path can be set via the `ICONS_CONFIG_DIR` environment variable — see [sample/config.json](sample/config.json) for an example of what could be loaded with "`ICONS_CONFIG_DIR=sample`".
@@ -127,6 +127,13 @@ The architectures supported by this image are:
 <!-- TBD -->
 
 ## Building
+
+### Install and test with NPM
+
+```bash
+$ npm install && npm run test
+```
+
 ### Docker image
 ```bash
 # multi-platform build with buildx
@@ -145,5 +152,11 @@ Most icons were based on the excellent work from [aegis-icons](https://github.co
 ```bash
 mogrify -quiet -format ico -density 256x256 -background none -define icon:auto-resize=256 -path output icons/*.png
 ```
+
+---
+
+## Disclaimer
+
+As with the [aegis-icons project](https://github.com/aegis-icons/aegis-icons), this project includes material that may be protected as a trademark in some jurisdictions. Trademarks seen here in "serve-favicons" project does not indicate endorsement to the brands. If you want to use this project and choose to expose icons publicly, you have to ensure that you have the legal right to do so and that you do not infringe any trademark rights. Please do not use brand based icons for any purpose except to represent the company, product, or service to which they refer. The CC0 license applies only to templates, texts, codes and some of the icons. Everything else is either licensed (see the credits) or property of trademark owners. If you're owner of certain trademark(s) and want icon taken down for whatever reason, please [make a new issue](/issues/new).
 
 ---
