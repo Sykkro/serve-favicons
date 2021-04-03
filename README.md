@@ -98,12 +98,13 @@ Field | Description | Default value
 
 These defaults can be overridden by an external `config.json` file, whose path can be set via the `ICONS_CONFIG_DIR` environment variable — see [sample/config.json](sample/config.json) for an example of what could be loaded with "`ICONS_CONFIG_DIR=sample`".
 
+By default, `DEBUG` logs will be disabled. If you wish to turn on these logs, set the `ICONS_DEBUG_MODE` environment variable to something truthy (e.g. `"true"`, or `1`).
+
 ### Running with NPM
 
 ```bash
 $ npm start
 ```
-
 
 ### Running with docker
 
@@ -131,7 +132,7 @@ The architectures supported by this image are:
 ### Install and test with NPM
 
 ```bash
-$ npm install && npm run test
+$ npm install && npm run lint && npm run test
 ```
 
 ### Docker image
