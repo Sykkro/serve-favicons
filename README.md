@@ -8,13 +8,12 @@ Serve **custom and preset Favicons** (website icons) via HTTP(s)
 
 [![buildx](https://github.com/Sykkro/serve-favicons/workflows/buildx/badge.svg)](https://github.com/Sykkro/serve-favicons/actions?query=workflow%3Abuildx)
 [![Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/sykkro/serve-favicons)]()
+[![HitCount](http://hits.dwyl.com/sykkro/serve-favicons.svg)](http://hits.dwyl.com/sykkro/serve-favicons)
 [![Last release](https://img.shields.io/github/v/release/sykkro/serve-favicons)](https://github.com/Sykkro/serve-favicons/releases)
+
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/sykkro/serve-favicons)
-
-
 [![Docker Image Size (latest semver)](https://img.shields.io/docker/image-size/sykkro/serve-favicons)](https://hub.docker.com/repository/docker/sykkro/serve-favicons)
 [![Docker Pulls](https://img.shields.io/docker/pulls/sykkro/serve-favicons)](https://hub.docker.com/repository/docker/sykkro/serve-favicons)
-[![Docker Image Version (latest semver)](https://img.shields.io/docker/v/sykkro/serve-favicons)](https://hub.docker.com/repository/docker/sykkro/serve-favicons)
 
 </div>
 
